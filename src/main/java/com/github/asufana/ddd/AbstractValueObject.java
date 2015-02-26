@@ -4,8 +4,10 @@ import java.io.*;
 
 import org.apache.commons.lang3.builder.*;
 
+import com.github.asufana.ddd.funtions.*;
+
 public abstract class AbstractValueObject implements Serializable {
-    private static final long serialVersionUID = 1L;
+    protected static final long serialVersionUID = 1L;
     
     @Override
     public boolean equals(final Object other) {
@@ -28,7 +30,7 @@ public abstract class AbstractValueObject implements Serializable {
     
     @Override
     public String toString() {
-        return ReflectionToStringBuilder.toString(this,
-                                                  ToStringStyle.SHORT_PREFIX_STYLE);
+        return ToStringFunction.toString(this);
     }
+    
 }
