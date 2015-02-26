@@ -1,8 +1,5 @@
 package com.github.asufana.ddd;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
-
 import java.math.*;
 
 import javax.persistence.*;
@@ -10,18 +7,7 @@ import javax.persistence.*;
 import org.joda.time.*;
 import org.junit.*;
 
-import com.github.asufana.ddd.funtions.ValidateFunction.FieldInfo;
-
 public class AbstractValueObjectValidateTest {
-    
-    //@Column read test
-    @Test
-    public void testStringFields01() throws Exception {
-        final FieldInfo field = new StringVo("test").fields().get("value");
-        assertThat(field, is(not(nullValue())));
-        assertThat(field.length(), is(255));
-        assertThat(field.nullable(), is(true));
-    }
     
     //null test
     @Test
@@ -50,16 +36,6 @@ public class AbstractValueObjectValidateTest {
     }
     
     //-----------------------------------------
-    
-    //@Column read test
-    @Test
-    public void testStringFields02() throws Exception {
-        final FieldInfo field = new StringVoWithColumnAttr("test").fields()
-                                                                  .get("value");
-        assertThat(field, is(not(nullValue())));
-        assertThat(field.length(), is(4));
-        assertThat(field.nullable(), is(false));
-    }
     
     //null test
     @Test(expected = IllegalArgumentException.class)
@@ -96,15 +72,6 @@ public class AbstractValueObjectValidateTest {
     
     //-----------------------------------------
     
-    //@Column read test
-    @Test
-    public void testIntegerFields01() throws Exception {
-        final FieldInfo field = new IntegerVo(null).fields().get("value");
-        assertThat(field, is(not(nullValue())));
-        assertThat(field.length(), is(nullValue()));
-        assertThat(field.nullable(), is(true));
-    }
-    
     //null test
     @Test
     public void testValidateionNullableInteger01() throws Exception {
@@ -125,16 +92,6 @@ public class AbstractValueObjectValidateTest {
     }
     
     //-----------------------------------------
-    
-    //@Column read test
-    @Test
-    public void testIntegerFields02() throws Exception {
-        final FieldInfo field = new IntegerVoWithColumnAttr(123).fields()
-                                                                .get("value");
-        assertThat(field, is(not(nullValue())));
-        assertThat(field.length(), is(nullValue()));
-        assertThat(field.nullable(), is(false));
-    }
     
     //null test
     @Test(expected = IllegalArgumentException.class)
