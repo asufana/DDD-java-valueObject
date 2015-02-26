@@ -5,6 +5,7 @@ import java.io.*;
 import org.apache.commons.lang3.builder.*;
 
 import com.github.asufana.ddd.funtions.*;
+import com.github.asufana.ddd.funtions.ValidateFunction.FieldInfoCollection;
 
 public abstract class AbstractValueObject implements Serializable {
     protected static final long serialVersionUID = 1L;
@@ -33,4 +34,11 @@ public abstract class AbstractValueObject implements Serializable {
         return ToStringFunction.toString(this);
     }
     
+    protected void validate() {
+        ValidateFunction.validate(this);
+    }
+    
+    FieldInfoCollection fields() {
+        return ValidateFunction.fields(this);
+    }
 }
