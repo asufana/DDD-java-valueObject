@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 import org.junit.*;
 
-import com.github.asufana.ddd.funtions.ValidateFunction.FieldInfo;
+import com.github.asufana.ddd.funtions.ColumnAnnotationValidateFunction.FieldInfo;
 
 public class ColumnAttrReadTest {
     

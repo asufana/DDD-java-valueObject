@@ -7,7 +7,7 @@ import javax.persistence.*;
 import org.joda.time.*;
 import org.junit.*;
 
-public class AbstractValueObjectValidateTest {
+public class VoColumnAnnotationValidateTest {
     
     //null test
     @Test

@@ -11,7 +11,7 @@ import org.joda.time.*;
 
 import com.github.asufana.ddd.*;
 
-public class ValidateFunction {
+public class ColumnAnnotationValidateFunction {
     
     public static <T extends AbstractValueObject> void validate(final T vo) {
         try {

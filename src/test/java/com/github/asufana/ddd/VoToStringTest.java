@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class AbstractValueObjectToStringTest {
+public class VoToStringTest {
     
     @Test
     public void testToString() throws Exception {

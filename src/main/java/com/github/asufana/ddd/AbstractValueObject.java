@@ -5,7 +5,7 @@ import java.io.*;
 import org.apache.commons.lang3.builder.*;
 
 import com.github.asufana.ddd.funtions.*;
-import com.github.asufana.ddd.funtions.ValidateFunction.FieldInfoCollection;
+import com.github.asufana.ddd.funtions.ColumnAnnotationValidateFunction.FieldInfoCollection;
 
 public abstract class AbstractValueObject implements Serializable {
     protected static final long serialVersionUID = 1L;
@@ -35,10 +35,10 @@ public abstract class AbstractValueObject implements Serializable {
     }
     
     protected void validate() {
-        ValidateFunction.validate(this);
+        ColumnAnnotationValidateFunction.validate(this);
     }
     
     FieldInfoCollection fields() {
-        return ValidateFunction.fields(this);
+        return ColumnAnnotationValidateFunction.fields(this);
     }
 }

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 import org.junit.*;
 
-public class AbstractValueObjectEqualsTest {
+public class VoEqualsTest {
     
     @Test
     public void testEquals() {
