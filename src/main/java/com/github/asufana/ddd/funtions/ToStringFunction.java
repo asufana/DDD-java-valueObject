@@ -5,9 +5,11 @@ import java.util.*;
 
 import org.apache.commons.lang3.builder.*;
 
+import com.github.asufana.ddd.*;
+
 public abstract class ToStringFunction {
     
-    public static String toString(final Object vo) {
+    public static <T extends AbstractValueObject> String toString(final T vo) {
         final Optional<Field> valueField = getValueField(vo);
         return valueField.isPresent()
                 ? toStringByValueField(vo, valueField.get())
@@ -15,8 +17,8 @@ public abstract class ToStringFunction {
     }
     
     /** valueフィールド値を返却 */
-    private static String toStringByValueField(final Object vo,
-                                               final Field field) {
+    private static <T extends AbstractValueObject> String toStringByValueField(final T vo,
+                                                                               final Field field) {
         try {
             field.setAccessible(true);
             final Object object = field.get(vo);
@@ -30,13 +32,13 @@ public abstract class ToStringFunction {
     }
     
     /** リフレクションでフィールド値を返却 */
-    private static String toStringByReflection(final Object vo) {
+    private static <T extends AbstractValueObject> String toStringByReflection(final T vo) {
         return ReflectionToStringBuilder.toString(vo,
                                                   ToStringStyle.SHORT_PREFIX_STYLE);
     }
     
     /** valueフィールドがあるかどうか */
-    private static Optional<Field> getValueField(final Object object) {
+    private static <T extends AbstractValueObject> Optional<Field> getValueField(final T object) {
         return Arrays.asList(object.getClass().getDeclaredFields())
                      .stream()
                      .filter(field -> field.getName().equals("value"))
