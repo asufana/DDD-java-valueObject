@@ -21,8 +21,6 @@ public class ColumnAttrReadTest {
     }
     
     static class StringVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final String value;
         
@@ -45,8 +43,6 @@ public class ColumnAttrReadTest {
     }
     
     static class StringVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false, length = 4)
         public final String value;
         
@@ -68,8 +64,6 @@ public class ColumnAttrReadTest {
     }
     
     static class IntegerVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final Integer value;
         
@@ -92,8 +86,6 @@ public class ColumnAttrReadTest {
     }
     
     static class IntegerVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false)
         public final Integer value;
         

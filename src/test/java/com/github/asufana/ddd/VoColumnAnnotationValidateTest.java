@@ -24,8 +24,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class StringVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final String value;
         
@@ -59,8 +57,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class StringVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false, length = 4)
         public final String value;
         
@@ -80,8 +76,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class IntegerVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final Integer value;
         
@@ -101,8 +95,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class IntegerVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false)
         public final Integer value;
         
@@ -122,8 +114,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class LongVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final Long value;
         
@@ -143,8 +133,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class LongVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false)
         public final Long value;
         
@@ -164,8 +152,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class BigDecimalVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final BigDecimal value;
         
@@ -185,8 +171,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class BigDecimalVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false)
         public final BigDecimal value;
         
@@ -206,8 +190,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class DateTimeVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final DateTime value;
         
@@ -227,8 +209,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class DateTimeVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false)
         public final DateTime value;
         
@@ -248,8 +228,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class BooleanVo extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column
         public final Boolean value;
         
@@ -269,8 +247,6 @@ public class VoColumnAnnotationValidateTest {
     }
     
     static class BooleanVoWithColumnAttr extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @Column(nullable = false)
         public final Boolean value;
         

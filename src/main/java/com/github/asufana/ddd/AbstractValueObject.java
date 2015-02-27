@@ -1,14 +1,11 @@
 package com.github.asufana.ddd;
 
-import java.io.*;
-
 import org.apache.commons.lang3.builder.*;
 
 import com.github.asufana.ddd.funtions.*;
 import com.github.asufana.ddd.funtions.ColumnAnnotationValidateFunction.FieldInfoCollection;
 
-public abstract class AbstractValueObject implements Serializable {
-    protected static final long serialVersionUID = 1L;
+public abstract class AbstractValueObject {
     
     @Override
     public boolean equals(final Object other) {

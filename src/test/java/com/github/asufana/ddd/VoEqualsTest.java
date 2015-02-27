@@ -21,8 +21,6 @@ public class VoEqualsTest {
     }
     
     public static class ValueObject extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @SuppressWarnings("unused")
         private final String value;
         

@@ -19,14 +19,12 @@ public class VoToStringTest {
         
         //by reflection
         assertThat(new ValueObjectWithoutValueField(null).toString(),
-                   is("AbstractValueObjectToStringTest.ValueObjectWithoutValueField[data=<null>]"));
+                   is("VoToStringTest.ValueObjectWithoutValueField[data=<null>]"));
         assertThat(new ValueObjectWithoutValueField("foo").toString(),
-                   is("AbstractValueObjectToStringTest.ValueObjectWithoutValueField[data=foo]"));
+                   is("VoToStringTest.ValueObjectWithoutValueField[data=foo]"));
     }
     
     public static class ValueObject extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         private final String value;
         
         public ValueObject(final String value) {
@@ -40,8 +38,6 @@ public class VoToStringTest {
     }
     
     public static class ValueObjectWithoutToString extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @SuppressWarnings("unused")
         private final String value;
         
@@ -51,8 +47,6 @@ public class VoToStringTest {
     }
     
     public static class ValueObjectWithoutValueField extends AbstractValueObject {
-        private static final long serialVersionUID = 1L;
-        
         @SuppressWarnings("unused")
         private final String data;
         
