@@ -33,6 +33,7 @@ public abstract class AbstractValueObject {
     
     protected void validate() {
         ColumnAnnotationValidateFunction.validate(this);
+        PatternAnnotationValidateFunction.validate(this);
     }
     
     FieldInfoCollection fields() {
