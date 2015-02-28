@@ -2,8 +2,9 @@ package com.github.asufana.ddd;
 
 import org.apache.commons.lang3.builder.*;
 
-import com.github.asufana.ddd.funtions.*;
-import com.github.asufana.ddd.funtions.ColumnAnnotationValidateFunction.FieldInfoCollection;
+import com.github.asufana.ddd.functions.*;
+import com.github.asufana.ddd.validations.*;
+import com.github.asufana.ddd.validations.ColumnAnnotationValidateFunction.*;
 
 public abstract class AbstractValueObject {
     

@@ -1,4 +1,4 @@
-package com.github.asufana.ddd.funtions;
+package com.github.asufana.ddd.validations;
 
 import java.lang.reflect.*;
 
@@ -6,6 +6,7 @@ import org.apache.commons.lang3.*;
 
 import com.github.asufana.ddd.*;
 import com.github.asufana.ddd.annotations.*;
+import com.github.asufana.ddd.functions.*;
 
 public class PatternAnnotationValidateFunction {
     

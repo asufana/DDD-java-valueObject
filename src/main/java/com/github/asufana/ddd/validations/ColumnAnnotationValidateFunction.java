@@ -1,4 +1,4 @@
-package com.github.asufana.ddd.funtions;
+package com.github.asufana.ddd.validations;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
@@ -17,16 +17,14 @@ public class ColumnAnnotationValidateFunction {
         try {
             fields(vo).validate();
         }
-        catch (final IllegalArgumentException iae) {
-            throw new IllegalArgumentException(iae.getMessage());
-        }
-        catch (final Exception e) {
+        catch (IllegalArgumentException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
     }
     
     /** (staticを除く）ローカルフィールド一覧 */
     public static <T extends AbstractValueObject> FieldInfoCollection fields(final T vo) {
+        
         final List<FieldInfo> fields = new ArrayList<FieldInfo>();
         for (final Field field : vo.getClass().getDeclaredFields()) {
             //staticフィールドは除外
@@ -81,8 +79,29 @@ public class ColumnAnnotationValidateFunction {
         
         /** バリデーション */
         public void validate() throws IllegalArgumentException, IllegalAccessException {
+            //Nullチェック
+            validateNotNull();
+            //文字長チェック
+            validateLength();
+        }
+        
+        //文字長確認
+        void validateLength() throws IllegalArgumentException, IllegalAccessException {
             final Object o = field().get(object());
-            //null許容確認
+            if (o != null && length != null) {
+                final String value = (String) o;
+                if (value.length() > length) {
+                    throw new IllegalArgumentException(String.format("文字長が超過しています。",
+                                                                     o.getClass()
+                                                                      .getName(),
+                                                                     value));
+                }
+            }
+        }
+        
+        //null許容確認
+        void validateNotNull() throws IllegalArgumentException, IllegalAccessException {
+            final Object o = field().get(object());
             if (nullable == false) {
                 if (o == null) {
                     throw new IllegalArgumentException(String.format("入力してください。",
@@ -94,16 +113,6 @@ public class ColumnAnnotationValidateFunction {
                     throw new IllegalArgumentException(String.format("入力してください。",
                                                                      object().getClass()
                                                                              .getName()));
-                }
-            }
-            //文字長確認
-            if (o != null && length != null) {
-                final String value = (String) o;
-                if (value.length() > length) {
-                    throw new IllegalArgumentException(String.format("文字長が超過しています。",
-                                                                     o.getClass()
-                                                                      .getName(),
-                                                                     value));
                 }
             }
         }
@@ -162,6 +171,10 @@ public class ColumnAnnotationValidateFunction {
     /** Fieldクラスコレクション */
     public static class FieldInfoCollection {
         private List<FieldInfo> fields;
+        
+        public List<FieldInfo> list() {
+            return fields;
+        }
         
         //コンストラクタ
         public FieldInfoCollection(final List<FieldInfo> fields) {

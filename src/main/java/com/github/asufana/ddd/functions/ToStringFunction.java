@@ -1,4 +1,4 @@
-package com.github.asufana.ddd.funtions;
+package com.github.asufana.ddd.functions;
 
 import java.lang.reflect.*;
 
