@@ -10,6 +10,7 @@ import java.util.*;
 import org.joda.time.*;
 
 import com.github.asufana.ddd.*;
+import com.github.asufana.ddd.exceptions.*;
 
 public class ColumnAnnotationValidateFunction {
     
@@ -18,13 +19,12 @@ public class ColumnAnnotationValidateFunction {
             fields(vo).validate();
         }
         catch (IllegalArgumentException | IllegalAccessException e) {
-            throw new RuntimeException(e);
+            throw new ValueObjectException(e);
         }
     }
     
     /** (staticを除く）ローカルフィールド一覧 */
     public static <T extends AbstractValueObject> FieldInfoCollection fields(final T vo) {
-        
         final List<FieldInfo> fields = new ArrayList<FieldInfo>();
         for (final Field field : vo.getClass().getDeclaredFields()) {
             //staticフィールドは除外
@@ -73,7 +73,8 @@ public class ColumnAnnotationValidateFunction {
                     && !clazz.equals(BigDecimal.class)
                     && !clazz.equals(DateTime.class)
                     && !clazz.equals(Boolean.class)) {
-                throw new RuntimeException("指定の型には対応していません：" + clazz.getName());
+                throw new ValueObjectException("指定の型には対応していません："
+                        + clazz.getName());
             }
         }
         
@@ -91,10 +92,7 @@ public class ColumnAnnotationValidateFunction {
             if (o != null && length != null) {
                 final String value = (String) o;
                 if (value.length() > length) {
-                    throw new IllegalArgumentException(String.format("文字長が超過しています。",
-                                                                     o.getClass()
-                                                                      .getName(),
-                                                                     value));
+                    throw ValueObjectException.overLengthException(field());
                 }
             }
         }
@@ -104,15 +102,11 @@ public class ColumnAnnotationValidateFunction {
             final Object o = field().get(object());
             if (nullable == false) {
                 if (o == null) {
-                    throw new IllegalArgumentException(String.format("入力してください。",
-                                                                     object().getClass()
-                                                                             .getName()));
+                    throw ValueObjectException.nullException(field());
                 }
                 //String型の場合、空文字は不可
                 if (length != null && isEmpty((String) o)) {
-                    throw new IllegalArgumentException(String.format("入力してください。",
-                                                                     object().getClass()
-                                                                             .getName()));
+                    throw ValueObjectException.nullException(field());
                 }
             }
         }

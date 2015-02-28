@@ -16,8 +16,8 @@ public abstract class ToStringFunction {
     }
     
     /** valueフィールド値を返却 */
-    private static <T extends AbstractValueObject> String toStringByValueField(final T vo,
-                                                                               final Field field) {
+    static <T extends AbstractValueObject> String toStringByValueField(final T vo,
+                                                                       final Field field) {
         try {
             field.setAccessible(true);
             final Object object = field.get(vo);

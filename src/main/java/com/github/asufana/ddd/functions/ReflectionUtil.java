@@ -10,10 +10,18 @@ public class ReflectionUtil {
     
     // get "value" field
     public static <T extends AbstractValueObject> Field getValueField(final T vo) {
-        return getFields(vo).stream()
-                            .filter(field -> field.getName().equals("value"))
-                            .findAny()
-                            .orElse(null);
+        return getValueField(getFields(vo));
+    }
+    
+    public static Field getValueField(final Field field) {
+        return getValueField(getFields(field));
+    }
+    
+    private static Field getValueField(final List<Field> fields) {
+        return fields.stream()
+                     .filter(field -> field.getName().equals("value"))
+                     .findAny()
+                     .orElse(null);
     }
     
     public static <T extends AbstractValueObject> List<AbstractValueObject> getValueObjects(final T vo) {
@@ -32,7 +40,19 @@ public class ReflectionUtil {
                             .collect(Collectors.toList());
     }
     
+    public static <T extends AbstractValueObject> List<Field> getValueObjectFields(final T vo) {
+        return getFields(vo).stream().filter(field -> {
+            field.setAccessible(true);
+            return AbstractValueObject.class.isAssignableFrom(field.getType());
+        }).collect(Collectors.toList());
+    }
+    
     private static <T extends AbstractValueObject> List<Field> getFields(final T vo) {
         return Arrays.asList(vo.getClass().getDeclaredFields());
     }
+    
+    private static List<Field> getFields(final Field field) {
+        return Arrays.asList(field.getType().getDeclaredFields());
+    }
+    
 }

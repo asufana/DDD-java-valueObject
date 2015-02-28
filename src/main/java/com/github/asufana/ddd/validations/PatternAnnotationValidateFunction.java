@@ -6,6 +6,7 @@ import org.apache.commons.lang3.*;
 
 import com.github.asufana.ddd.*;
 import com.github.asufana.ddd.annotations.*;
+import com.github.asufana.ddd.exceptions.*;
 import com.github.asufana.ddd.functions.*;
 
 public class PatternAnnotationValidateFunction {
@@ -31,9 +32,9 @@ public class PatternAnnotationValidateFunction {
         
         //validate
         if (value.matches(regexPatten) == false) {
-            throw new IllegalArgumentException(String.format("入力が正しくありません。入力値：%s, 既定値：%s",
-                                                             value,
-                                                             regexPatten));
+            throw new ValueObjectException(String.format("入力が正しくありません。入力値：%s, 既定値：%s",
+                                                         value,
+                                                         regexPatten));
         }
     }
     

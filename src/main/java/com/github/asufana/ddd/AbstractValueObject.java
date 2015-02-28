@@ -4,7 +4,7 @@ import org.apache.commons.lang3.builder.*;
 
 import com.github.asufana.ddd.functions.*;
 import com.github.asufana.ddd.validations.*;
-import com.github.asufana.ddd.validations.ColumnAnnotationValidateFunction.*;
+import com.github.asufana.ddd.validations.ColumnAnnotationValidateFunction.FieldInfoCollection;
 
 public abstract class AbstractValueObject {
     
@@ -35,6 +35,7 @@ public abstract class AbstractValueObject {
     protected void validate() {
         ColumnAnnotationValidateFunction.validate(this);
         PatternAnnotationValidateFunction.validate(this);
+        NotNullValidateFunction.validate(this);
     }
     
     FieldInfoCollection fields() {

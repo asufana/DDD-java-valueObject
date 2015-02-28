@@ -1,4 +1,4 @@
-package com.github.asufana.ddd;
+package com.github.asufana.ddd.validations;
 
 import java.math.*;
 
@@ -7,20 +7,25 @@ import javax.persistence.*;
 import org.joda.time.*;
 import org.junit.*;
 
-public class VoColumnAnnotationValidateTest {
+import com.github.asufana.ddd.*;
+import com.github.asufana.ddd.exceptions.*;
+
+public class ColumnAnnotationValidateFunctionTest {
+    
+    // String.class -----------------------------------------
     
     //null test
     @Test
     public void testValidateionNullableString01() throws Exception {
         //例外とならないこと
-        new StringVo(null);
+        ColumnAnnotationValidateFunction.validate(new StringVo(null));
     }
     
     //null test
     @Test
     public void testValidateionNullableString02() throws Exception {
         //例外とならないこと
-        new StringVo("");
+        ColumnAnnotationValidateFunction.validate(new StringVo(""));
     }
     
     static class StringVo extends AbstractValueObject {
@@ -29,31 +34,30 @@ public class VoColumnAnnotationValidateTest {
         
         public StringVo(final String value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // String.class with @Column -----------------------------------------
     
     //null test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionNullableString03() throws Exception {
         //例外となること
-        new StringVoWithColumnAttr(null);
+        ColumnAnnotationValidateFunction.validate(new StringVoWithColumnAttr(null));
     }
     
     //null test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionNullableString04() throws Exception {
         //例外となること
-        new StringVoWithColumnAttr("");
+        ColumnAnnotationValidateFunction.validate(new StringVoWithColumnAttr(""));
     }
     
     //length test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionLength() throws Exception {
         //例外となること
-        new StringVoWithColumnAttr("aaaaaaaaaaaaa");
+        ColumnAnnotationValidateFunction.validate(new StringVoWithColumnAttr("aaaaaaaaaaaaa"));
     }
     
     static class StringVoWithColumnAttr extends AbstractValueObject {
@@ -62,17 +66,16 @@ public class VoColumnAnnotationValidateTest {
         
         public StringVoWithColumnAttr(final String value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // Integer.class -----------------------------------------
     
     //null test
     @Test
     public void testValidateionNullableInteger01() throws Exception {
         //例外とならないこと
-        new IntegerVo(null);
+        ColumnAnnotationValidateFunction.validate(new IntegerVo(null));
     }
     
     static class IntegerVo extends AbstractValueObject {
@@ -81,17 +84,16 @@ public class VoColumnAnnotationValidateTest {
         
         public IntegerVo(final Integer value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // Integer.class with @Column -----------------------------------------
     
     //null test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionNullableInteger02() throws Exception {
         //例外となること
-        new IntegerVoWithColumnAttr(null);
+        ColumnAnnotationValidateFunction.validate(new IntegerVoWithColumnAttr(null));
     }
     
     static class IntegerVoWithColumnAttr extends AbstractValueObject {
@@ -100,17 +102,16 @@ public class VoColumnAnnotationValidateTest {
         
         public IntegerVoWithColumnAttr(final Integer value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // Long.class -----------------------------------------
     
     //null test
     @Test
     public void testValidateionNullableLong01() throws Exception {
         //例外とならないこと
-        new LongVo(null);
+        ColumnAnnotationValidateFunction.validate(new LongVo(null));
     }
     
     static class LongVo extends AbstractValueObject {
@@ -119,17 +120,16 @@ public class VoColumnAnnotationValidateTest {
         
         public LongVo(final Long value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // Long.class with @Column -----------------------------------------
     
     //null test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionNullableLong02() throws Exception {
         //例外となること
-        new LongVoWithColumnAttr(null);
+        ColumnAnnotationValidateFunction.validate(new LongVoWithColumnAttr(null));
     }
     
     static class LongVoWithColumnAttr extends AbstractValueObject {
@@ -138,17 +138,16 @@ public class VoColumnAnnotationValidateTest {
         
         public LongVoWithColumnAttr(final Long value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // BigDecimal.class -----------------------------------------
     
     //null test
     @Test
     public void testValidateionNullableBigDecimal01() throws Exception {
         //例外とならないこと
-        new BigDecimalVo(null);
+        ColumnAnnotationValidateFunction.validate(new BigDecimalVo(null));
     }
     
     static class BigDecimalVo extends AbstractValueObject {
@@ -157,17 +156,16 @@ public class VoColumnAnnotationValidateTest {
         
         public BigDecimalVo(final BigDecimal value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // BigDecimal.class with @Column -----------------------------------------
     
     //null test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionNullableBigDecimal02() throws Exception {
         //例外となること
-        new BigDecimalVoWithColumnAttr(null);
+        ColumnAnnotationValidateFunction.validate(new BigDecimalVoWithColumnAttr(null));
     }
     
     static class BigDecimalVoWithColumnAttr extends AbstractValueObject {
@@ -176,17 +174,16 @@ public class VoColumnAnnotationValidateTest {
         
         public BigDecimalVoWithColumnAttr(final BigDecimal value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // DateTime.class -----------------------------------------
     
     //null test
     @Test
     public void testValidateionNullableDateTime01() throws Exception {
         //例外とならないこと
-        new DateTimeVo(null);
+        ColumnAnnotationValidateFunction.validate(new DateTimeVo(null));
     }
     
     static class DateTimeVo extends AbstractValueObject {
@@ -195,17 +192,16 @@ public class VoColumnAnnotationValidateTest {
         
         public DateTimeVo(final DateTime value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // DateTime.class with @Column -----------------------------------------
     
     //null test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionNullableDateTime02() throws Exception {
         //例外となること
-        new DateTimeVoWithColumnAttr(null);
+        ColumnAnnotationValidateFunction.validate(new DateTimeVoWithColumnAttr(null));
     }
     
     static class DateTimeVoWithColumnAttr extends AbstractValueObject {
@@ -214,17 +210,16 @@ public class VoColumnAnnotationValidateTest {
         
         public DateTimeVoWithColumnAttr(final DateTime value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // Boolean.class -----------------------------------------
     
     //null test
     @Test
     public void testValidateionNullableBoolean01() throws Exception {
         //例外とならないこと
-        new BooleanVo(null);
+        ColumnAnnotationValidateFunction.validate(new BooleanVo(null));
     }
     
     static class BooleanVo extends AbstractValueObject {
@@ -233,17 +228,16 @@ public class VoColumnAnnotationValidateTest {
         
         public BooleanVo(final Boolean value) {
             this.value = value;
-            validate();
         }
     }
     
-    //-----------------------------------------
+    // Boolean.class with @Column -----------------------------------------
     
     //null test
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ValueObjectException.class)
     public void testValidateionNullableBoolean02() throws Exception {
         //例外となること
-        new BooleanVoWithColumnAttr(null);
+        ColumnAnnotationValidateFunction.validate(new BooleanVoWithColumnAttr(null));
     }
     
     static class BooleanVoWithColumnAttr extends AbstractValueObject {
@@ -252,7 +246,6 @@ public class VoColumnAnnotationValidateTest {
         
         public BooleanVoWithColumnAttr(final Boolean value) {
             this.value = value;
-            validate();
         }
     }
 }
