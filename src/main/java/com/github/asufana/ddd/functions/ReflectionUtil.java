@@ -40,14 +40,14 @@ public class ReflectionUtil {
                             .collect(Collectors.toList());
     }
     
-    public static <T extends AbstractValueObject> List<Field> getValueObjectFields(final T vo) {
+    public static List<Field> getValueObjectFields(final Object vo) {
         return getFields(vo).stream().filter(field -> {
             field.setAccessible(true);
             return AbstractValueObject.class.isAssignableFrom(field.getType());
         }).collect(Collectors.toList());
     }
     
-    private static <T extends AbstractValueObject> List<Field> getFields(final T vo) {
+    private static List<Field> getFields(final Object vo) {
         return Arrays.asList(vo.getClass().getDeclaredFields());
     }
     

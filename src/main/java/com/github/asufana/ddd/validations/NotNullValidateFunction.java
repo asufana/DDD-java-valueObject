@@ -5,13 +5,12 @@ import java.util.*;
 
 import javax.persistence.*;
 
-import com.github.asufana.ddd.*;
 import com.github.asufana.ddd.exceptions.*;
 import com.github.asufana.ddd.functions.*;
 
 public class NotNullValidateFunction {
     
-    public static <T extends AbstractValueObject> void validate(final T vo) {
+    public static void validate(final Object vo) {
         final List<Field> fields = ReflectionUtil.getValueObjectFields(vo);
         for (final Field field : fields) {
             final Field valueField = ReflectionUtil.getValueField(field);
@@ -27,8 +26,7 @@ public class NotNullValidateFunction {
         }
     }
     
-    private static <T extends AbstractValueObject> boolean isNull(final T vo,
-                                                                  final Field field) {
+    private static boolean isNull(final Object vo, final Field field) {
         try {
             final Object object = field.get(vo);
             return object == null;
